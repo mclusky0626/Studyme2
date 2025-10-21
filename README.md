@@ -4,8 +4,7 @@
 [![Google Gemini](https://img.shields.io/badge/Google-Gemini%20API-4285F4.svg)](https://ai.google.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
----
-물론입니다. 수많은 오류를 거쳐 마침내 완성된 봇을 위한 `README.md` 파일을 작성해 드리겠습니다. 간결하지만 모든 핵심 내용이 포함되도록 만들었습니다.
+
 
 ---
 
