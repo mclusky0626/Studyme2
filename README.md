@@ -31,7 +31,7 @@
 
 1.  **프로젝트 클론**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/mclusky0626/Studyme2
     cd Studyme2
     ```
 
@@ -52,7 +52,7 @@
     ```
 
 4.  **.env 파일 생성**
-    프로젝트 루트 디렉토리에 `.env` 파일을 생성하고 아래 내용을 채워넣으세요. **따옴표는 사용하지 마세요.**
+    프로젝트 루트 디렉토리에 `.env` 파일을 생성하고 아래 내용을 채워넣으세요. 
     ```env
     DISCORD_TOKEN=여러분의_디스코드봇_토큰을_입력하세요
     GEMINI_API_KEY=여러분의_Gemini_API_키를_입력하세요
