@@ -8,14 +8,15 @@ from memory_system import tools
 model = genai.GenerativeModel(
     model_name=MODEL_NAME,
     tools=[
-        tools.save_memory,
-        tools.search_memory,
-        tools.update_memory,
-        tools.delete_memory,
-        tools.save_user_alias,
-        tools.search_public_memory
+        tools.save_my_memory,
+        tools.update_my_memory,
+        tools.delete_my_memory,
+        tools.save_my_alias,
+        tools.find_user_by_alias,
+        tools.search_user_memory
     ],
-    system_instruction=SYSTEM_PROMPT
+    system_instruction=SYSTEM_PROMPT,
+
 )
 
 # 사용자별 대화 기록을 관리하기 위한 딕셔너리
@@ -56,10 +57,11 @@ def process_message(user_id: str, username: str, message_text: str):
 
             # 4. 도구 실행 결과를 다시 AI에게 보내 다음 행동을 결정하게 합니다.
             response = chat_session.send_message(
-                genai.Part.from_function_response(
-                    name=func_name,
-                    response={"result": tool_response}
-                ),
+                {"function_response": {
+                    "name": func_name,
+                    "response": {"result": tool_response}
+                    }
+                }
             )
 
         # 5. 모든 도구 사용이 끝나면 최종 답변을 반환합니다.
