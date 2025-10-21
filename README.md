@@ -106,3 +106,7 @@ python main.py
 **기존 Studyme2와 바뀐점**
 제미나이의 function calling 기능을 활용해 토큰 소모를 기존의 40%로 줄였습니다
 기존의 프로젝트 보다 훨씬 경량화된 구조를 띄고있고, 더 유연한 DB관리가 가능합니다.
+
+---
+all credits goes to mclusky0626
+discord: fasdads_
