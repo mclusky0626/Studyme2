@@ -31,7 +31,7 @@ def update_my_memory(user_id: str, username: str, old_fact_query: str, new_fact:
     return save_my_memory(user_id, username, new_fact)
 
 
-def delete_my_memory(user_id: str, fact_to_delete_query: str):
+def delete_my_memory(user_id: str, fact_to_delete_query: str,**kwargs   ):
     """'나 자신'의 개인 기억 중 특정 정보와 가장 유사한 것을 찾아 삭제합니다."""
     results = collection.query(query_texts=[fact_to_delete_query], n_results=1, where={"owner_user_id": user_id},
                                include=["documents"])
@@ -94,3 +94,21 @@ def search_user_memory(target_user_id: str, query: str):
 
     print(f"🔍 SEARCHED MEMORY for user {target_user_id}: {found_memories}")
     return "\n".join(found_memories)
+
+def add_memory_for_another_user(target_user_id: str, target_username: str, fact: str):
+    """
+    [특수 기능] '나'가 아닌, 지정된 '다른 사용자'를 위해 새로운 기억을 저장합니다.
+    관계에 대한 대칭적인 기억을 생성할 때 사용됩니다.
+    Args:
+        target_user_id (str): 기억을 추가해 줄 대상 사용자의 Discord ID.
+        target_username (str): 대상 사용자의 Discord 이름.
+        fact (str): 대상 사용자를 위해 저장할 구체적인 사실. 예: "사용자 A는 당신의 친구입니다."
+    """
+    memory_id = f"symmetric_{target_user_id}_{uuid.uuid4()}"
+    collection.add(
+        documents=[fact],
+        metadatas=[{"owner_user_id": target_user_id, "owner_username": target_username, "memory_type": "personal"}],
+        ids=[memory_id]
+    )
+    print(f"✨ SYMMETRIC MEMORY CREATED for {target_username}: {fact}")
+    return f"ACTION_SUCCESS: {target_username}님을 위해 '{fact}' 라는 새로운 기억을 성공적으로 생성했습니다."
